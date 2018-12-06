@@ -1,0 +1,74 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All playlists for activities
+    </h1>
+
+    <a href="/playlists_for_activities/new" class="btn btn-block btn-outline-secondary">
+      Add a new playlists for activity
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Activity
+        </th>
+
+        <th>
+          Playlist
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @playlists_for_activities.each do |playlists_for_activity| %>
+      <tr>
+        <td>
+          <%= playlists_for_activity.id %>
+        </td>
+
+        <td>
+          <%= playlists_for_activity.activity_id %>
+        </td>
+
+        <td>
+          <%= playlists_for_activity.playlist_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(playlists_for_activity.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(playlists_for_activity.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/playlists_for_activities/<%= playlists_for_activity.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

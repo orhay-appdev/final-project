@@ -1,0 +1,54 @@
+<!-- Validation failure messages -->
+<% if @recommend.present? %>
+  <% if @recommend.errors.any? %>
+    <% @recommend.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new recommend
+</h1>
+
+
+<hr>
+
+<form action="/create_recommend" method="post">
+
+  <div class="form-group">
+    <label for="song_id">
+      Song
+    </label>
+
+    <input type="text" id="song_id" name="song_id" class="form-control" value="<%= @recommend.song_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @recommend.user_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="activity_id">
+      Activity
+    </label>
+
+    <input type="text" id="activity_id" name="activity_id" class="form-control" value="<%= @recommend.activity_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create recommend
+  </button>
+</form>
+
+<hr>
+
+<a href="/recommends">
+  Go back
+</a>

@@ -1,0 +1,38 @@
+<!-- Validation failure messages -->
+<% if @activity.present? %>
+  <% if @activity.errors.any? %>
+    <% @activity.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new activity
+</h1>
+
+
+<hr>
+
+<form action="/create_activity" method="post">
+
+  <div class="form-group">
+    <label for="activity_name">
+      Activity name
+    </label>
+
+    <input type="text" id="activity_name" name="activity_name" class="form-control" value="<%= @activity.activity_name %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create activity
+  </button>
+</form>
+
+<hr>
+
+<a href="/activities">
+  Go back
+</a>

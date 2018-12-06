@@ -1,0 +1,74 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All songs
+    </h1>
+
+    <a href="/songs/new" class="btn btn-block btn-outline-secondary">
+      Add a new song
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Artist
+        </th>
+
+        <th>
+          Song name
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @songs.each do |song| %>
+      <tr>
+        <td>
+          <%= song.id %>
+        </td>
+
+        <td>
+          <%= song.artist %>
+        </td>
+
+        <td>
+          <%= song.song_name %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(song.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(song.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/songs/<%= song.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

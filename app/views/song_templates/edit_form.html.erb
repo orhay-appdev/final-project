@@ -1,0 +1,34 @@
+<h1>
+  Edit song #<%= @song.id %>
+</h1>
+
+<hr>
+
+<form action="/update_song/<%= @song.id %>" method="post">
+
+  <div class="form-group">
+    <label for="artist">
+      Artist
+    </label>
+
+    <textarea id="artist" name="artist" class="form-control" rows="3"><%= @song.artist %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="song_name">
+      Song name
+    </label>
+
+    <input type="text" id="song_name" name="song_name" class="form-control" value="<%= @song.song_name %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update song
+  </button>
+</form>
+
+<hr>
+
+<a href="/songs">
+  Go back
+</a>

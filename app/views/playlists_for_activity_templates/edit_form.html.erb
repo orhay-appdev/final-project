@@ -1,0 +1,34 @@
+<h1>
+  Edit playlists for activity #<%= @playlists_for_activity.id %>
+</h1>
+
+<hr>
+
+<form action="/update_playlists_for_activity/<%= @playlists_for_activity.id %>" method="post">
+
+  <div class="form-group">
+    <label for="activity_id">
+      Activity
+    </label>
+
+    <input type="text" id="activity_id" name="activity_id" class="form-control" value="<%= @playlists_for_activity.activity_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="playlist_id">
+      Playlist
+    </label>
+
+    <input type="text" id="playlist_id" name="playlist_id" class="form-control" value="<%= @playlists_for_activity.playlist_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update playlists for activity
+  </button>
+</form>
+
+<hr>
+
+<a href="/playlists_for_activities">
+  Go back
+</a>

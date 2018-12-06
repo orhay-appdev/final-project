@@ -1,0 +1,34 @@
+<h1>
+  Edit songs for activity #<%= @songs_for_activity.id %>
+</h1>
+
+<hr>
+
+<form action="/update_songs_for_activity/<%= @songs_for_activity.id %>" method="post">
+
+  <div class="form-group">
+    <label for="song_id">
+      Song
+    </label>
+
+    <input type="text" id="song_id" name="song_id" class="form-control" value="<%= @songs_for_activity.song_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="activity_id">
+      Activity
+    </label>
+
+    <input type="text" id="activity_id" name="activity_id" class="form-control" value="<%= @songs_for_activity.activity_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update songs for activity
+  </button>
+</form>
+
+<hr>
+
+<a href="/songs_for_activities">
+  Go back
+</a>

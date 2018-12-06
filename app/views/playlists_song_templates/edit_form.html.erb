@@ -1,0 +1,34 @@
+<h1>
+  Edit playlists song #<%= @playlists_song.id %>
+</h1>
+
+<hr>
+
+<form action="/update_playlists_song/<%= @playlists_song.id %>" method="post">
+
+  <div class="form-group">
+    <label for="song_id">
+      Song
+    </label>
+
+    <input type="text" id="song_id" name="song_id" class="form-control" value="<%= @playlists_song.song_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="playlist_id">
+      Playlist
+    </label>
+
+    <input type="text" id="playlist_id" name="playlist_id" class="form-control" value="<%= @playlists_song.playlist_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update playlists song
+  </button>
+</form>
+
+<hr>
+
+<a href="/playlists_songs">
+  Go back
+</a>

@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Playlists song #<%= @playlists_song.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/playlists_songs" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/playlists_songs/<%= @playlists_song.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit playlists song
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_playlists_song/<%= @playlists_song.id %>" class="btn btn-block btn-outline-secondary">
+          Delete playlists song
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Song
+      </dt>
+      <dd>
+        <%= @playlists_song.song_id %>
+      </dd>
+
+      <dt>
+        Playlist
+      </dt>
+      <dd>
+        <%= @playlists_song.playlist_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@playlists_song.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@playlists_song.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

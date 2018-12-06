@@ -1,0 +1,82 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All recommends
+    </h1>
+
+    <a href="/recommends/new" class="btn btn-block btn-outline-secondary">
+      Add a new recommend
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Song
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Activity
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @recommends.each do |recommend| %>
+      <tr>
+        <td>
+          <%= recommend.id %>
+        </td>
+
+        <td>
+          <%= recommend.song_id %>
+        </td>
+
+        <td>
+          <%= recommend.user_id %>
+        </td>
+
+        <td>
+          <%= recommend.activity_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(recommend.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(recommend.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/recommends/<%= recommend.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

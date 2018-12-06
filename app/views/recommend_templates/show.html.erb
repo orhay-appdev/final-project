@@ -1,0 +1,65 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Recommend #<%= @recommend.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/recommends" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/recommends/<%= @recommend.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit recommend
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_recommend/<%= @recommend.id %>" class="btn btn-block btn-outline-secondary">
+          Delete recommend
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Song
+      </dt>
+      <dd>
+        <%= @recommend.song_id %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @recommend.user_id %>
+      </dd>
+
+      <dt>
+        Activity
+      </dt>
+      <dd>
+        <%= @recommend.activity_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@recommend.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@recommend.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
