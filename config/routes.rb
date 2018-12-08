@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  # Routes for the composers resource:
+
+  # READ
+  get("/composers", { :controller => "composers", :action => "index" })
+  get("/composers/:id_to_display", { :controller => "composers", :action => "show" })
+
+  
   # Routes for the Playlists song resource:
 
   # CREATE
@@ -136,5 +143,5 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'songs#index'
+  root 'recommends#index'
 end

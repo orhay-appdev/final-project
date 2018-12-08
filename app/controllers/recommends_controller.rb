@@ -13,7 +13,9 @@ class RecommendsController < ApplicationController
 
   def new_form
     @recommend = Recommend.new
-
+    @songs = Song.all
+    @activities = Activity.all
+    @recommend.user_id = current_user.id
     render("recommend_templates/new_form.html.erb")
   end
 
@@ -23,6 +25,7 @@ class RecommendsController < ApplicationController
     @recommend.song_id = params.fetch("song_id")
     @recommend.user_id = params.fetch("user_id")
     @recommend.activity_id = params.fetch("activity_id")
+    @recommend.text = params.fetch("text")
 
     if @recommend.valid?
       @recommend.save
@@ -45,6 +48,7 @@ class RecommendsController < ApplicationController
     @recommend.song_id = params.fetch("song_id")
     @recommend.user_id = params.fetch("user_id")
     @recommend.activity_id = params.fetch("activity_id")
+    @recommend.text = params.fetch("text")
 
     if @recommend.valid?
       @recommend.save

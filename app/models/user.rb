@@ -33,4 +33,5 @@ class User < ApplicationRecord
   validates :username, :uniqueness => true
   validates :last_name, :presence => true
   validates :first_name, :presence => { :message => "Please provide a first name" }
+  mount_uploader :photo, PhotoUploader
 end

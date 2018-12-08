@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src = "https://songsfor-orhay.c9users.io/uploads/tmp/1544137548-24097-0004-6586/tur-01__2_.png">
+    </a>
+    
+    <button class="navbar-toggler" type="button"  data-target="#collapsible-nav-links" aria-controls="collapsible-nav-links" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/recommends">Recommends</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/activities">Activities</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/playlists">Playlists</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/songs">Songs</a>
+      </li>
+    
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"style="color:yellow">
+            Play :)
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a href="/recommends" class="dropdown-item">
+              Recommends
+            </a>
+            <a href="/activities" class="dropdown-item">
+              Activities
+            </a>
+            <a href="/playlists" class="dropdown-item">
+              Playlists
+            </a>
+            <a href="/songs" class="dropdown-item">
+              Songs
+            </a>
+          </div>
+        </li>
+           </ul>
+
+      <ul class="navbar-nav">
+        <% if current_user.blank? %>
+          <li class="nav-item">
+            <a href="/users/sign_in" class="nav-link">
+              Sign in
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/users/sign_up" class="nav-link">
+              Sign up
+            </a>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a href="/composers/<%=current_user.id%>" class="nav-link">
+              Hey <%=current_user.first_name%>! 
+              <img src= "<%=current_user.photo%>" alt="<%=current_user.first_name%>" height="22" width="22">
+              </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/users/edit" class="nav-link">
+              Edit
+              <i class="fas fa-edit"></i>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/users/sign_out" data-method="delete" class="nav-link">
+              Sign out
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div> <!-- .navbar-collapse -->
+  </div> <!-- .container -->
+</nav>

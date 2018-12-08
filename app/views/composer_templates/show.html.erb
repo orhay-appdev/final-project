@@ -1,0 +1,14 @@
+  <br/>
+  <div class="row mb-3">
+      <div class="col">
+        <a href="/composers" class="btn btn-block btn-outline-secondary">
+          Back to all users
+        </a>
+      </div>
+  </div>
+<div class="jumbotron">
+  <h1 class="display-3">Welcome to <%= @user.username %>'s page!</h1>
+  <p class="lead">Name:  <%= @user.first_name%> <%=  @user.last_name%> </p>
+  <p class="lead">Member Since:  <%= @user.created_at %> </p>
+  <div style="width: 500px"><img src="<%= @user.photo%>" style="max-width: 100%"></div>
+</div>

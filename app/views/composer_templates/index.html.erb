@@ -1,0 +1,45 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All users
+    </h1>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table table-hover">
+<thead>
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Photo</th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr class="<%=["table-danger","table-success","table-secondary","table-warning","table-light","table-dark"].sample %>">
+        <th scope="row">
+          <a href="/composers/<%= user.id %>">
+            <%= user.username %>
+          </a>
+        </th>
+        <td>
+            <%= user.first_name %>
+        </td>
+        <td>
+            <%= user.last_name %>
+        </td>
+        <td>
+            <img src="<%= user.photo %>" height="40" width = "40">
+        </td>
+      </tr>
+      <% end %>
+        </tbody>
+    </table>
+  </div>
+</div>

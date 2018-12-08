@@ -2,7 +2,21 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-
+   <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  </div>
+  
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -11,7 +25,13 @@
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-
+  
+      <div class="field">
+    <%= f.label :photo %><br />
+   <%= f.file_field :photo, :class => "form-control" %>
+    <img src="<%= @user.photo %>" class="img-responsive" height="300" width="300">
+  </div>
+  
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
@@ -32,12 +52,20 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+  <button name="button" type="submit" class="btn btn-info">Update :)</button>
   </div>
+  <br/>
+  <br/>
 <% end %>
 
-<h3>Cancel my account</h3>
+<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+  <div class="card-header">Unhappy?</div>
+  <div class="card-body">
+    <h4 class="card-title">We wish you to stay, but you can allways</h4>
+    <p style="color:red" class="mb-0" <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %> </p>
+  </div>
+</div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
 
 <%= link_to "Back", :back %>
