@@ -25,25 +25,28 @@
     </div>
 
     <dl>
-      <dt>
-        Song
-      </dt>
-      <dd>
-        <%= @recommend.song_id %>
-      </dd>
-
+      
       <dt>
         User
       </dt>
       <dd>
-        <%= @recommend.user_id %>
+        <%= User.find(@recommend.user_id).username %>
       </dd>
+      
+      <dt>
+        Song
+      </dt>
+      <dd>
+        <%= Song.find(@recommend.song_id).artist%> - <%= Song.find(@recommend.song_id).song_name%>
+      </dd>
+
+
 
       <dt>
         Activity
       </dt>
       <dd>
-        <%= @recommend.activity_id %>
+        <%= Activity.find(@recommend.activity_id).activity_name%>
       </dd>
       <dt>
         Recommend

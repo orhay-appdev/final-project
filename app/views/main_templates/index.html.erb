@@ -1,0 +1,32 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      Welcome!
+    </h1>
+  </div>
+</div>
+<h5>SongsFor is a site that was built in order to help us know new songs that suit our mood.</h5>
+<h5>In a world who is full of machines that try to learn our behavior - it is still the best to help each other in a community way.</h5>
+<p>I encourage you to add different songs that you like, and match them to an activity by writing a recommendation. You are more than welcome to add a new activity!</p>
+<p>You can also look for recommends by a specific user.</p>
+<br/>
+<h4>A Random Recommend:</h4>
+<div class="<%=["card border-primary mb-3","card border-secondary mb-3","card border-success mb-3","card border-danger mb-3","card border-warning mb-3"].sample%>" style="max-width: 80rem">
+  <div class="card-body">
+    <h5 class="card-title"><%= Song.find(@recommend.song_id).artist%> - <%= Song.find(@recommend.song_id).song_name%></h4>
+    <h6 class="card-subtitle mb-2 text-muted">Amazing for <%= Activity.find(@recommend.activity_id).activity_name%></h6>
+    <p class="card-text"><%= @recommend.text%></p>
+    <p><a href="/composers/<%= @recommend.user_id%>" class="card-link"><%= User.find(@recommend.user_id).username%></a>
+    , <%= @recommend.created_at%>,
+    <% if current_user.id == @recommend.user_id %>
+    <a href="/recommends/<%= @recommend.id%>/edit" class="card-link">You can edit the recommend</a>
+    <%end%>
+    </p>
+  </div>
+</div>
+<br/>
+<h4>About Me:</h4>
+<p>My name is Or Hay. I have been playing guitar since I was 16 years old, but I have always had huge passion for music.</p>
+<p>I love to listen to music during every different activity I do, from studying till running. Help me find new songs to listen to!</p>
+<img src = "https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/46286085_10218711228473203_3669825975614439424_n.jpg?_nc_cat=102&_nc_ht=scontent-ort2-2.xx&oh=d439844db89c54d2bfeb91b234d219c1&oe=5C9B2472">
+<p>By the way, you can read my recommends <a href="/composers/1" >here</a></p>

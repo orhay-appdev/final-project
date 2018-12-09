@@ -21,7 +21,8 @@ class RecommendsController < ApplicationController
 
   def create_row
     @recommend = Recommend.new
-
+    @songs = Song.all
+    @activities = Activity.all
     @recommend.song_id = params.fetch("song_id")
     @recommend.user_id = params.fetch("user_id")
     @recommend.activity_id = params.fetch("activity_id")
@@ -30,7 +31,7 @@ class RecommendsController < ApplicationController
     if @recommend.valid?
       @recommend.save
 
-      redirect_back(:fallback_location => "/recommends", :notice => "Recommend created successfully.")
+      redirect_to("/recommends", :notice => "Recommend created successfully.")
     else
       render("recommend_templates/new_form_with_errors.html.erb")
     end
@@ -45,9 +46,6 @@ class RecommendsController < ApplicationController
   def update_row
     @recommend = Recommend.find(params.fetch("id_to_modify"))
 
-    @recommend.song_id = params.fetch("song_id")
-    @recommend.user_id = params.fetch("user_id")
-    @recommend.activity_id = params.fetch("activity_id")
     @recommend.text = params.fetch("text")
 
     if @recommend.valid?

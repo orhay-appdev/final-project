@@ -11,4 +11,24 @@
   <p class="lead">Name:  <%= @user.first_name%> <%=  @user.last_name%> </p>
   <p class="lead">Member Since:  <%= @user.created_at %> </p>
   <div style="width: 500px"><img src="<%= @user.photo%>" style="max-width: 100%"></div>
+  <br/>
+  <p class="lead"><%= @user.first_name %>'s Recommends: </p> 
+       <% @recommends.reverse_each do |recommend| %>
+       <% if @user.id == recommend.user_id %>
+<div class="<%=["card border-primary mb-3","card border-secondary mb-3","card border-success mb-3","card border-danger mb-3","card border-warning mb-3"].sample%>" style="max-width: 80rem">
+  <div class="card-body">
+    <h4 class="card-title"><%= Song.find(recommend.song_id).artist%> - <%= Song.find(recommend.song_id).song_name%></h4>
+    <h6 class="card-subtitle mb-2 text-muted">Amazing for <%= Activity.find(recommend.activity_id).activity_name%></h6>
+    <p class="card-text"><%= recommend.text%></p>
+    <p><a href="/composers/<%= recommend.user_id%>" class="card-link"><%= User.find(recommend.user_id).username%></a>
+    ,<%= recommend.created_at%>,
+    <% if current_user.id == recommend.id %>
+    <a href="/recommends/<%= recommend.id%>/edit" class="card-link">You can edit the recommend</a>
+    <%end%>
+    </p>
+  </div>
+</div>
+      <%end%>
+      <% end %>
+  
 </div>

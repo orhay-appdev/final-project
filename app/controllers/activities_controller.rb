@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
-
+    @recommends = Recommend.all
     render("activity_templates/index.html.erb")
   end
 

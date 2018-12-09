@@ -12,14 +12,18 @@
 
 
 <hr>
-     <% @recommends.each do |recommend| %>
+     <% @recommends.reverse_each do |recommend| %>
 <div class="<%=["card border-primary mb-3","card border-secondary mb-3","card border-success mb-3","card border-danger mb-3","card border-warning mb-3"].sample%>" style="max-width: 80rem">
   <div class="card-body">
-    <h4 class="card-title"><%= Song.find(recommend.song_id).song_name%></h4>
+    <h4 class="card-title"><%= Song.find(recommend.song_id).artist%> - <%= Song.find(recommend.song_id).song_name%></h4>
     <h6 class="card-subtitle mb-2 text-muted">Amazing for <%= Activity.find(recommend.activity_id).activity_name%></h6>
     <p class="card-text"><%= recommend.text%></p>
     <p><a href="/composers/<%= recommend.user_id%>" class="card-link"><%= User.find(recommend.user_id).username%></a>
-    ,<%= recommend.created_at%> </p>
+    , <%= recommend.created_at%>,
+    <% if current_user.id == recommend.user_id %>
+    <a href="/recommends/<%= recommend.id%>/edit" class="card-link">You can edit the recommend</a>
+    <%end%>
+    </p>
   </div>
 </div>
       <% end %>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+ # Routes for the main resource:
+
+  # READ
+  get("/mains", { :controller => "mains", :action => "index" })
+  
   # Routes for the composers resource:
 
   # READ
@@ -143,5 +148,5 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'recommends#index'
+  root 'mains#index'
 end

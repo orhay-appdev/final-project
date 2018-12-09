@@ -1,66 +1,53 @@
 <div class="row mb-3">
   <div class="col-md-12">
     <h1>
-      All activities
+      Choose Songs For...
     </h1>
-
-    <a href="/activities/new" class="btn btn-block btn-outline-secondary">
-      Add a new activity
-    </a>
   </div>
 </div>
 
 
 <hr>
 
-<div class="row mb-3">
-  <div class="col-md-12">
-    <table class="table">
-      <tr>
-        <th>
-          ID
-        </th>
+<ul class="nav nav-tabs">
+  <% @activities.each do |activity| %>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#<%= activity.activity_name%>"><%= activity.activity_name%></a>
+  </li>
+  <%end%>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#new">Add a new activity</a>
+  </li>
+</ul>
 
-        <th>
-          Activity name
-        </th>
+<div id="myTabContent" class="tab-content">
+  <% @activities.each do |activity| %>
+  <div class="tab-pane fade" id="<%= activity.activity_name%>">
+    <% @recommends.reverse_each do |recommend| %>
+    <% if recommend.activity_id == activity.id %>
+    <blockquote class="blockquote">
+    <p class="mb-0"><%= Song.find(recommend.song_id).artist%> - <%= Song.find(recommend.song_id).song_name%>
+    <a href = "/recommends/<%=recommend.id%>">(Read Recommend)</a>
+    </p>
+    </blockquote>
+    <%end%>
+    <%end%>
+  </div>
+  <%end%>
+  <div class="tab-pane fade" id="new">
+    <form action="/create_activity" method="post">
 
-        <th>
-          Created at
-        </th>
+  <div class="form-group">
+    <label for="activity_name">
+      Activity name
+    </label>
 
-        <th>
-          Updated at
-        </th>
+    <input type="text" id="activity_name" name="activity_name" class="form-control">
+  </div>
 
-        <th>
-        </th>
-      </tr>
-
-      <% @activities.each do |activity| %>
-      <tr>
-        <td>
-          <%= activity.id %>
-        </td>
-
-        <td>
-          <%= activity.activity_name %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(activity.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(activity.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/activities/<%= activity.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+  <button class="btn btn-block btn-outline-secondary">
+    Create activity
+  </button>
+</form>
   </div>
 </div>
