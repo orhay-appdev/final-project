@@ -1,8 +1,22 @@
 Rails.application.routes.draw do
+  
+  # Routes for the artists resource:
+
+  # READ
+  get '/artists', to: 'artists#index'
+  get '/artists/:id', to:'artists#show', as: 'artist'
+
  # Routes for the main resource:
 
   # READ
   get("/mains", { :controller => "mains", :action => "index" })
+  get("/mains/spotify", { :controller => "mains", :action => "spotify" })
+  
+   # Routes for the spotify resource:
+
+  # READ
+  get("/spotify", { :controller => "spotify", :action => "index" })
+
   
   # Routes for the composers resource:
 

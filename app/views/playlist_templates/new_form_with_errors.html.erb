@@ -17,6 +17,22 @@
 <hr>
 
 <form action="/create_playlist" method="post">
+  
+  <div class="form-group">
+    <div class="form-group">
+  <fieldset>
+    <label class="control-label" for="readOnlyInput">User</label>
+    <input class="form-control" id="readOnlyInput" type="text" placeholder="<%=current_user.username%>" readonly="">
+  </fieldset>
+</div>
+
+
+<div class="form-group">
+    <label for="playlist_name">
+      Playlist name
+    </label>
+        <input type="text" id="playlist_name" name="playlist_name" class="form-control" value="<%= @playlist.playlist_name %>">
+  </div>
 
   <div class="form-group">
     <label for="description">
@@ -26,29 +42,6 @@
     <textarea id="description" name="description" class="form-control" rows="3"><%= @playlist.description %></textarea>
   </div>
 
-  <div class="form-group">
-    <label for="user_id">
-      User
-    </label>
-
-    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @playlist.user_id %>">
-  </div>
-
-  <div class="form-group">
-    <label for="playlist_name">
-      Playlist name
-    </label>
-
-    <input type="text" id="playlist_name" name="playlist_name" class="form-control" value="<%= @playlist.playlist_name %>">
-  </div>
-
-  <div class="form-group">
-    <label for="spotify_playlist_id">
-      Spotify playlist
-    </label>
-
-    <input type="text" id="spotify_playlist_id" name="spotify_playlist_id" class="form-control" value="<%= @playlist.spotify_playlist_id %>">
-  </div>
 
   <button class="btn btn-block btn-outline-secondary">
     Create playlist

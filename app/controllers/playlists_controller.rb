@@ -1,13 +1,14 @@
 class PlaylistsController < ApplicationController
   def index
     @playlists = Playlist.all
+    @playlists_songs = PlaylistsSong.all
 
     render("playlist_templates/index.html.erb")
   end
 
   def show
     @playlist = Playlist.find(params.fetch("id_to_display"))
-
+    @playlists_songs = PlaylistsSong.all
     render("playlist_templates/show.html.erb")
   end
 
@@ -21,14 +22,14 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new
 
     @playlist.description = params.fetch("description")
-    @playlist.user_id = params.fetch("user_id")
+    @playlist.user_id = current_user.id
     @playlist.playlist_name = params.fetch("playlist_name")
-    @playlist.spotify_playlist_id = params.fetch("spotify_playlist_id")
+    #@playlist.spotify_playlist_id = params.fetch("spotify_playlist_id")
 
     if @playlist.valid?
       @playlist.save
 
-      redirect_back(:fallback_location => "/playlists", :notice => "Playlist created successfully.")
+      redirect_to("/playlists_songs/new", :notice => "Playlist created successfully.")
     else
       render("playlist_templates/new_form_with_errors.html.erb")
     end
@@ -36,7 +37,7 @@ class PlaylistsController < ApplicationController
 
   def edit_form
     @playlist = Playlist.find(params.fetch("prefill_with_id"))
-
+    
     render("playlist_templates/edit_form.html.erb")
   end
 
@@ -44,9 +45,9 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params.fetch("id_to_modify"))
 
     @playlist.description = params.fetch("description")
-    @playlist.user_id = params.fetch("user_id")
+    @playlist.user_id = current_user.id
     @playlist.playlist_name = params.fetch("playlist_name")
-    @playlist.spotify_playlist_id = params.fetch("spotify_playlist_id")
+   
 
     if @playlist.valid?
       @playlist.save

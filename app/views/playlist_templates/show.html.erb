@@ -1,56 +1,64 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h1>
-      Playlist #<%= @playlist.id %> details
+      Playlist "<%= @playlist.playlist_name %>" details
     </h1>
-
+    
     <div class="row mb-3">
       <div class="col">
         <a href="/playlists" class="btn btn-block btn-outline-secondary">
           Go back
         </a>
       </div>
-
+      
+      <% if current_user.id == @playlist.user_id%>
       <div class="col">
         <a href="/playlists/<%= @playlist.id %>/edit" class="btn btn-block btn-outline-secondary">
           Edit playlist
         </a>
       </div>
-
+     
       <div class="col">
         <a href="/delete_playlist/<%= @playlist.id %>" class="btn btn-block btn-outline-secondary">
           Delete playlist
         </a>
       </div>
+      <%end%>
     </div>
-
+     
+    
     <dl>
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @playlist.description %>
-      </dd>
-
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @playlist.user_id %>
-      </dd>
-
+      
       <dt>
         Playlist name
       </dt>
       <dd>
         <%= @playlist.playlist_name %>
       </dd>
-
       <dt>
-        Spotify playlist
+        Owner
       </dt>
       <dd>
-        <%= @playlist.spotify_playlist_id %>
+         <a href="/composers/<%= @playlist.user_id%>" class="card-link"><%= User.find(@playlist.user_id).username %></a>
+      </dd>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @playlist.description %>
+      </dd>
+      
+      <dt>
+        All the songs in the playlist
+      </dt>
+      <dd>
+       
+        <% @playlists_songs.reverse_each do |playlists_song| %>
+        <% if @playlist.id == playlists_song.playlist_id %>
+        <p><%= Song.find(playlists_song.song_id).artist %> - <%= Song.find(playlists_song.song_id).song_name %></p>
+        <%end%>
+        <%end%>
+        
       </dd>
 
       <dt>

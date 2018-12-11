@@ -1,7 +1,7 @@
 class RecommendsController < ApplicationController
   def index
     @recommends = Recommend.all
-
+    
     render("recommend_templates/index.html.erb")
   end
 
@@ -24,7 +24,7 @@ class RecommendsController < ApplicationController
     @songs = Song.all
     @activities = Activity.all
     @recommend.song_id = params.fetch("song_id")
-    @recommend.user_id = params.fetch("user_id")
+    @recommend.user_id = current_user.id
     @recommend.activity_id = params.fetch("activity_id")
     @recommend.text = params.fetch("text")
 

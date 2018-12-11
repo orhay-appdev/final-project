@@ -7,6 +7,10 @@
     <a href="/songs/new" class="btn btn-block btn-outline-secondary">
       Add a new song
     </a>
+    
+    <a href="/recommends/new" class="btn btn-block btn-outline-secondary">
+      Recommend a  song
+    </a>
   </div>
 </div>
 
@@ -17,10 +21,6 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
-        <th>
-          ID
-        </th>
-
         <th>
           Artist
         </th>
@@ -33,20 +33,13 @@
           Created at
         </th>
 
-        <th>
-          Updated at
-        </th>
 
         <th>
         </th>
       </tr>
 
-      <% @songs.each do |song| %>
+      <% @songs.reverse_each do |song| %>
       <tr>
-        <td>
-          <%= song.id %>
-        </td>
-
         <td>
           <%= song.artist %>
         </td>
@@ -57,9 +50,6 @@
 
         <td>
           <%= time_ago_in_words(song.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(song.updated_at) %> ago
         </td>
 
         <td>

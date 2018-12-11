@@ -13,23 +13,31 @@ class PlaylistsSongsController < ApplicationController
 
   def new_form
     @playlists_song = PlaylistsSong.new
+    @songs = Song.all
+    @playlists = Playlist.all
+    
 
     render("playlists_song_templates/new_form.html.erb")
   end
 
   def create_row
+    @songs_ids = params.fetch("song_id")
+    @songs_ids.each do |song_id|
+    
     @playlists_song = PlaylistsSong.new
-
-    @playlists_song.song_id = params.fetch("song_id")
+    @playlists_song.song_id = song_id
     @playlists_song.playlist_id = params.fetch("playlist_id")
-
+  
     if @playlists_song.valid?
       @playlists_song.save
 
-      redirect_back(:fallback_location => "/playlists_songs", :notice => "Playlists song created successfully.")
     else
+      @lists = Playlist.all
       render("playlists_song_templates/new_form_with_errors.html.erb")
+      return
     end
+  end
+  redirect_to("/playlists", :notice => "The songs were added successfully.")
   end
 
   def edit_form

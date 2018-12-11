@@ -7,6 +7,7 @@ class ComposersController < ApplicationController
   def show
     @user = User.find(params.fetch("id_to_display"))
     @recommends = Recommend.all
+    @playlists = Playlist.all
     render("composer_templates/show.html.erb")
   end
 

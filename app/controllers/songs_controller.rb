@@ -26,7 +26,7 @@ class SongsController < ApplicationController
     if @song.valid?
       @song.save
 
-      redirect_back(:fallback_location => "/songs", :notice => "Song created successfully.")
+      redirect_to("/songs", :notice => "Song created successfully.")
     else
       render("song_templates/new_form_with_errors.html.erb")
     end

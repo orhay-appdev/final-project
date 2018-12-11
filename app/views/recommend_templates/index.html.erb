@@ -1,11 +1,11 @@
 <div class="row mb-3">
   <div class="col-md-12">
     <h1>
-      All recommends
+      Recommendations Wall
     </h1>
 
     <a href="/recommends/new" class="btn btn-block btn-outline-secondary">
-      Add a new recommend
+      Add a new recommendation
     </a>
   </div>
 </div>
@@ -21,7 +21,7 @@
     <p><a href="/composers/<%= recommend.user_id%>" class="card-link"><%= User.find(recommend.user_id).username%></a>
     , <%= recommend.created_at%>,
     <% if current_user.id == recommend.user_id %>
-    <a href="/recommends/<%= recommend.id%>/edit" class="card-link">You can edit the recommend</a>
+    <a href="/recommends/<%= recommend.id%>/edit" class="card-link">It's your recommendation, so you can edit it</a>
     <%end%>
     </p>
   </div>

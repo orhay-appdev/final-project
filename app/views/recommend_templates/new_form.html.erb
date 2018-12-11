@@ -1,5 +1,5 @@
 <h1>
-  Add a new recommend
+  Add a new recommendation
 </h1>
 
 
@@ -9,12 +9,12 @@
 
 
   <div class="form-group">
-    <label for="user_id">
-      User ID
-    </label>
-
-    <input type="text" readonly="" id="user_id" name="user_id" class="form-control" value = <%=current_user.id%> >
-  </div>
+    <div class="form-group">
+  <fieldset>
+    <label class="control-label" for="readOnlyInput">User</label>
+    <input class="form-control" id="readOnlyInput" type="text" placeholder="<%=current_user.username%>" readonly="">
+  </fieldset>
+</div>
  
     
     <fieldset class="form-group">
@@ -38,14 +38,16 @@
         <% end %>
         </select>
     </div>
+    
+    
 
     <div class="form-group">
-      <label for="text">Write your recommend</label>
+      <label for="text">Write your recommendation</label>
       <input type="text" id="text" name="text" class="form-control">
     </div>
 
   <button class="btn btn-block btn-outline-secondary">
-    Create recommend
+    Create recommendation
   </button>
 </form>
 

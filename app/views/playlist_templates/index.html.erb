@@ -3,9 +3,12 @@
     <h1>
       All playlists
     </h1>
-
+  
     <a href="/playlists/new" class="btn btn-block btn-outline-secondary">
       Add a new playlist
+    </a>
+    <a href="/playlists_songs/new" class="btn btn-block btn-outline-secondary">
+      Add songs to a playlist
     </a>
   </div>
 </div>
@@ -18,24 +21,21 @@
     <table class="table">
       <tr>
         <th>
-          ID
+          Playlist name
         </th>
-
+        
+        <th>
+          Owner
+        </th>
+        
         <th>
           Description
         </th>
-
+        
         <th>
-          User
+          Latest song added
         </th>
 
-        <th>
-          Playlist name
-        </th>
-
-        <th>
-          Spotify playlist
-        </th>
 
         <th>
           Created at
@@ -49,30 +49,31 @@
         </th>
       </tr>
 
-      <% @playlists.each do |playlist| %>
+      <% @playlists.reverse_each do |playlist| %>
       <tr>
         <td>
-          <%= playlist.id %>
+          <%= playlist.playlist_name %>
         </td>
-
+        
+         <td>
+          <a href="/composers/<%= playlist.user_id%>" class="card-link"><%= User.find(playlist.user_id).username %></a>
+        </td>
+        
         <td>
           <%= playlist.description %>
         </td>
 
         <td>
-          <%= playlist.user_id %>
+        <% @playlists_songs.reverse_each do |playlists_song| %>
+        <% if playlist.id == playlists_song.playlist_id %>
+        <p><%= Song.find(playlists_song.song_id).artist %> - <%= Song.find(playlists_song.song_id).song_name %></p>
+        <%end%>
+        <%break if playlist.id == playlists_song.playlist_id%>
+        <%end%>
         </td>
 
         <td>
-          <%= playlist.playlist_name %>
-        </td>
-
-        <td>
-          <%= playlist.spotify_playlist_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(playlist.created_at) %> ago
+          <%= playlist.created_at %>
         </td>
         <td>
           <%= time_ago_in_words(playlist.updated_at) %> ago
