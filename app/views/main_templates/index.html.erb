@@ -14,7 +14,7 @@
 <p>In the nearest future I plan to add some utilities that use Spotify's and Youtube's API. Stay tuend!</p>
 
 <br/>
-<h4>A Random Recommend:</h4>
+<h4>A Random Recommendation:</h4>
 <div class="<%=["card border-primary mb-3","card border-secondary mb-3","card border-success mb-3","card border-danger mb-3","card border-warning mb-3"].sample%>" style="max-width: 80rem">
   <div class="card-body">
     <h5 class="card-title"><%= Song.find(@recommend.song_id).artist%> - <%= Song.find(@recommend.song_id).song_name%></h4>
